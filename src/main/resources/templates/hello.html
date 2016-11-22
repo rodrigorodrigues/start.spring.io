@@ -12,7 +12,10 @@
 <div th:each="post:${feed}">
     <b th:text="${post.from.name}">from</b> wrote:
     <p th:text="${post.message}">message text</p>
-    <img th:if="${post.picture}" th:src="${post.picture}"/>
+    <video th:src="${post.source}" th:poster="${post.picture}" th:if="${post.type eq 'VIDEO'}">
+        This is fallback content to display for user agents that do not support the video tag.
+    </video>
+    <img th:if="${post.type eq 'PHOTO'}" th:src="${post.source}"/>
     <hr/>
 </div>
 </body>

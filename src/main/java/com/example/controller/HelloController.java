@@ -34,7 +34,9 @@ public class HelloController {
         model.addAttribute("facebookProfile", facebook.userOperations().getUserProfile());
         PagedList<Post> feed = facebook.feedOperations().getFeed();
         model.addAttribute("feed", feed);
-        logger.info("feed: "+ ReflectionToStringBuilder.toString(feed));
+        feed.forEach(post ->
+            logger.info("post: "+ ReflectionToStringBuilder.toString(post))
+        );
         return "hello";
     }
 
